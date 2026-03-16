@@ -259,7 +259,7 @@ export function PairingFlow({ onComplete, onCancel }: PairingFlowProps) {
                 }}>
                 
                   <img
-                  src="/EonProV2_-_transp.png"
+                  src={`${import.meta.env.BASE_URL}EonProV2_-_transp.png`}
                   alt="Arozen Diffuser"
                   className="w-28 h-auto object-contain" />
                 

@@ -101,7 +101,7 @@ export function DeviceControl({
           <div className="relative">
             <MistEffect active={device.isOn} intensity="medium" />
             <motion.img
-              src="/EonProV2_-_transp.png"
+              src={`${import.meta.env.BASE_URL}EonProV2_-_transp.png`}
               alt="Arozen Diffuser"
               className="w-24 h-auto object-contain relative z-10"
               animate={{
