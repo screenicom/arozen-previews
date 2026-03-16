@@ -1,0 +1,159 @@
+/* Arozen Diffuser App (v1) — Theme
+   Competitor-inspired style (Kirri / Scent Aus): clean, functional, familiar.
+   Light backgrounds, teal/blue accent, simple sans-serif. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Primary — teal/blue (common IoT/diffuser app accent) */
+  --color-primary: #0d9488;
+  --color-primary-hover: #0f766e;
+  --color-primary-light: #ccfbf1;
+  --color-primary-dark: #115e59;
+
+  /* Surfaces — clean white and light grey */
+  --color-bg: #f8fafc;
+  --color-bg-solid: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-border: #e2e8f0;
+  --color-border-soft: #f1f5f9;
+
+  /* Text */
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+
+  /* Status */
+  --color-online: #0d9488;
+  --color-offline: #94a3b8;
+  --color-error: #dc2626;
+  --color-error-bg: #fef2f2;
+  --color-warning-bg: #fffbeb;
+
+  /* Typography — clean sans only */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: var(--font-sans);
+  --text-display: 1.5rem;
+  --text-title: 1.25rem;
+  --text-heading: 1.0625rem;
+  --text-body: 1rem;
+  --text-caption: 0.8125rem;
+  --text-small: 0.75rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing — compact, efficient */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows — minimal, flat feel */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+  /* Accent alias (for components expecting accent) */
+  --color-accent: var(--color-primary);
+  --color-accent-hover: var(--color-primary-hover);
+  --color-accent-soft: var(--color-primary-light);
+  --color-accent-soft-2: rgba(13, 148, 136, 0.08);
+
+  /* App chrome */
+  --app-max-width: 440px;
+  --app-min-height: 100vh;
+  --safe-top: env(safe-area-inset-top, 0);
+  --safe-bottom: env(safe-area-inset-bottom, 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text);
+  background: var(--color-bg-solid);
+  min-height: var(--app-min-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+.proto-app {
+  max-width: var(--app-max-width);
+  margin: 0 auto;
+  min-height: var(--app-min-height);
+  background: var(--color-bg-solid);
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+}
+
+.proto-app::before {
+  display: none;
+}
+
+.proto-screen {
+  padding: var(--space-md);
+  padding-bottom: calc(var(--space-xl) + var(--safe-bottom));
+}
+
+.proto-app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.proto-app-bar__title {
+  font-size: var(--text-heading);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.proto-app-bar__logo {
+  height: 26px;
+  width: auto;
+}
+
+.proto-app-bar__back {
+  background: none;
+  border: none;
+  padding: var(--space-sm) 0;
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.proto-app-bar__back:hover {
+  text-decoration: underline;
+}
+
+.proto-section-title {
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 var(--space-sm);
+  padding: 0 var(--space-xs);
+}

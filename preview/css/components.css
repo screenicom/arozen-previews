@@ -1,0 +1,502 @@
+/* Arozen Diffuser App (v1) — Competitor-style components
+   Clean, flat, functional (Kirri / Scent Aus inspired) */
+
+/* Buttons */
+.proto-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-semibold);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.proto-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.proto-btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.proto-btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.proto-btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-border);
+}
+
+.proto-btn--secondary:hover:not(:disabled) {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+}
+
+.proto-btn--accent {
+  background: var(--color-primary);
+  color: #fff;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.proto-btn--accent:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.proto-btn--danger {
+  background: var(--color-error);
+  color: #fff;
+}
+
+.proto-btn--danger:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.proto-btn--ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+
+.proto-btn--ghost:hover:not(:disabled) {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* Diffuser card — flat, clean */
+.proto-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.proto-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.proto-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.proto-card__name {
+  font-size: var(--text-heading);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.proto-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.proto-card__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.proto-card__status-dot--online {
+  background: var(--color-online);
+}
+
+.proto-card__status-dot--offline {
+  background: var(--color-offline);
+}
+
+/* Preset chips — simple pills */
+.proto-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.proto-preset {
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.proto-preset:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.proto-preset--selected {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+/* Device image (FR-13, FR-4a) */
+.device-hero {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+.device-hero__img {
+  width: 100px;
+  height: auto;
+  max-height: 180px;
+  object-fit: contain;
+}
+
+/* Power hero — large central circle (competitor pattern) */
+.power-hero {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+.power-hero__btn {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-heading);
+  font-weight: var(--font-weight-bold);
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.power-hero__btn:hover {
+  transform: scale(1.02);
+}
+.power-hero__btn.proto-toggle--on {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.35);
+}
+.power-hero__label {
+  display: block;
+}
+
+/* On/Off toggle (inline) */
+.proto-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-md);
+}
+
+.proto-toggle-row__label {
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.proto-toggle {
+  width: 52px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.proto-toggle::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  top: 2px;
+  left: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.proto-toggle--on {
+  background: var(--color-primary);
+}
+
+.proto-toggle--on::after {
+  transform: translateX(24px);
+}
+
+/* Empty state */
+.proto-empty {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.proto-empty__icon {
+  font-size: 3rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.proto-empty__title {
+  font-size: var(--text-heading);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0 0 var(--space-sm);
+}
+
+.proto-empty__text {
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-lg);
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+/* Banners */
+.proto-banner {
+  padding: var(--space-md);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.proto-banner--error {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.proto-banner--offline {
+  background: var(--color-warning-bg);
+  color: #92400e;
+}
+
+.proto-banner__text {
+  flex: 1;
+  font-size: var(--text-caption);
+  margin: 0;
+}
+
+.proto-banner .proto-btn {
+  flex-shrink: 0;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--text-small);
+}
+
+/* Loading */
+.proto-loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+}
+
+.proto-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: proto-spin 0.8s linear infinite;
+}
+
+@keyframes proto-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Form field */
+.proto-field {
+  margin-bottom: var(--space-md);
+}
+
+.proto-field__label {
+  display: block;
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.proto-field__input {
+  width: 100%;
+  padding: var(--space-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.proto-field__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+/* Modal */
+.proto-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--space-md);
+}
+
+.proto-modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  max-width: 360px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+}
+
+.proto-modal__title {
+  font-size: var(--text-heading);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-sm);
+}
+
+.proto-modal__text {
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-lg);
+  line-height: 1.5;
+}
+
+.proto-modal__actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: flex-end;
+}
+
+/* Time remaining */
+.proto-time-remaining {
+  padding: var(--space-md);
+  background: var(--color-primary-light);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+  font-size: var(--text-caption);
+  color: var(--color-primary-dark);
+  font-weight: var(--font-weight-semibold);
+}
+
+.proto-time-remaining__label {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Progress steps (pairing) */
+.proto-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  padding: 0 var(--space-sm);
+}
+
+.proto-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.proto-step::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-border);
+  z-index: 0;
+}
+
+.proto-step:first-child::before {
+  left: 50%;
+}
+
+.proto-step:last-child::before {
+  right: 50%;
+}
+
+.proto-step__num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-semibold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.proto-step--done .proto-step__num {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.proto-step--current .proto-step__num {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.proto-step__label {
+  display: block;
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+.proto-step--current .proto-step__label {
+  color: var(--color-primary);
+}

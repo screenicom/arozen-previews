@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>My Diffusers — Arozen</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="proto-app">
+    <header class="proto-app-bar" style="gap: var(--space-sm);">
+      <img src="assets/logo.svg" alt="Arozen" class="proto-app-bar__logo" style="height: 24px; width: auto; flex-shrink: 0;">
+      <span class="proto-app-bar__title" style="flex: 1;">My Diffusers</span>
+    </header>
+
+    <main class="proto-screen">
+      <!-- Empty state (hidden by default; toggle via "See empty state" link) -->
+      <div id="empty-state" class="proto-empty" style="display: none;">
+        <div class="proto-empty__icon" aria-hidden="true">◆</div>
+        <h2 class="proto-empty__title">No diffusers yet</h2>
+        <p class="proto-empty__text">Add your first diffuser to get started. You can pair multiple diffusers and control them from here.</p>
+        <a href="pairing.html" class="proto-btn proto-btn--accent">Add diffuser</a>
+        <p style="margin-top: var(--space-lg); font-size: var(--text-small); color: var(--color-text-muted);">
+          <a href="#" id="show-list-link">Show list with devices</a>
+        </p>
+      </div>
+
+      <!-- Device list (default view) -->
+      <div id="list-state">
+        <div class="proto-section-title">Paired devices</div>
+        <a href="device-control.html?id=1&name=Living%20Room" class="proto-card">
+          <div class="proto-card__row">
+            <h3 class="proto-card__name">Living Room</h3>
+            <span class="proto-card__status">
+              <span class="proto-card__status-dot proto-card__status-dot--online"></span>
+              Online
+            </span>
+          </div>
+        </a>
+        <a href="device-control.html?id=2&name=Bedroom" class="proto-card">
+          <div class="proto-card__row">
+            <h3 class="proto-card__name">Bedroom</h3>
+            <span class="proto-card__status">
+              <span class="proto-card__status-dot proto-card__status-dot--offline"></span>
+              Offline
+            </span>
+          </div>
+        </a>
+
+        <div style="margin-top: var(--space-xl); text-align: center;">
+          <a href="pairing.html" class="proto-btn proto-btn--accent">Add diffuser</a>
+        </div>
+
+        <p style="margin-top: var(--space-lg); font-size: var(--text-small); color: var(--color-text-muted); text-align: center;">
+          <a href="#" id="show-empty-link">See empty state</a>
+        </p>
+      </div>
+    </main>
+  </div>
+  <script>
+    document.getElementById('show-empty-link')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('list-state').style.display = 'none';
+      document.getElementById('empty-state').style.display = 'block';
+    });
+    document.getElementById('show-list-link')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('empty-state').style.display = 'none';
+      document.getElementById('list-state').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

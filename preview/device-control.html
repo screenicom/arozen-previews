@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Living Room — Arozen</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="proto-app">
+    <header class="proto-app-bar">
+      <a href="device-list.html" class="proto-app-bar__back">← Back</a>
+      <span class="proto-app-bar__title" id="device-name">Living Room</span>
+      <a href="device-settings.html" class="proto-app-bar__back">Settings</a>
+    </header>
+
+    <main class="proto-screen">
+      <!-- Device image (FR-13) -->
+      <div class="device-hero">
+        <img src="assets/diffuser-eon-pro-v2.png" alt="Arozen Eon Pro V2" class="device-hero__img">
+      </div>
+      <!-- Central power control (competitor-style: large circular toggle) -->
+      <div class="power-hero">
+        <button type="button" class="power-hero__btn proto-toggle--on" id="power-toggle" aria-pressed="true" aria-label="Turn diffuser off">
+          <span class="power-hero__label" id="power-label">ON</span>
+        </button>
+      </div>
+
+      <!-- Time remaining (when supported by device) -->
+      <div class="proto-time-remaining">
+        <span class="proto-time-remaining__label">Time remaining: </span>
+        <span id="time-remaining">2h 14m</span>
+      </div>
+
+      <!-- Misting frequency -->
+      <p class="proto-section-title">Misting frequency</p>
+      <div class="proto-presets" id="misting-presets" role="group" aria-label="Misting frequency">
+        <button type="button" class="proto-preset" data-value="1">1 min</button>
+        <button type="button" class="proto-preset proto-preset--selected" data-value="3">3 min</button>
+        <button type="button" class="proto-preset" data-value="5">5 min</button>
+        <button type="button" class="proto-preset" data-value="10">10 min</button>
+        <button type="button" class="proto-preset" data-value="20">20 min</button>
+        <button type="button" class="proto-preset" data-value="40">40 min</button>
+      </div>
+
+      <!-- Countdown -->
+      <p class="proto-section-title" style="margin-top: var(--space-lg);">Countdown</p>
+      <div class="proto-presets" id="countdown-presets" role="group" aria-label="Countdown duration">
+        <button type="button" class="proto-preset" data-value="1h">1h</button>
+        <button type="button" class="proto-preset proto-preset--selected" data-value="2h">2h</button>
+        <button type="button" class="proto-preset" data-value="4h">4h</button>
+        <button type="button" class="proto-preset" data-value="8h">8h</button>
+        <button type="button" class="proto-preset" data-value="unlimited">Unlimited</button>
+      </div>
+
+    </main>
+  </div>
+  <script>
+    (function() {
+      var power = document.getElementById('power-toggle');
+      var powerLabel = document.getElementById('power-label');
+      if (power) {
+        power.addEventListener('click', function() {
+          var on = this.getAttribute('aria-pressed') === 'true';
+          this.setAttribute('aria-pressed', !on);
+          this.classList.toggle('proto-toggle--on', !on);
+          if (powerLabel) powerLabel.textContent = !on ? 'ON' : 'OFF';
+        });
+      }
+      document.querySelectorAll('#misting-presets .proto-preset').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('#misting-presets .proto-preset').forEach(function(b) { b.classList.remove('proto-preset--selected'); });
+          this.classList.add('proto-preset--selected');
+        });
+      });
+      document.querySelectorAll('#countdown-presets .proto-preset').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('#countdown-presets .proto-preset').forEach(function(b) { b.classList.remove('proto-preset--selected'); });
+          this.classList.add('proto-preset--selected');
+        });
+      });
+      var nameFromQuery = new URLSearchParams(window.location.search).get('name');
+      if (nameFromQuery) document.getElementById('device-name').textContent = decodeURIComponent(nameFromQuery);
+    })();
+  </script>
+</body>
+</html>

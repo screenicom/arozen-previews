@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Device settings — Arozen</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="proto-app">
+    <header class="proto-app-bar">
+      <a href="device-control.html" class="proto-app-bar__back">← Back</a>
+      <span class="proto-app-bar__title">Device settings</span>
+      <span style="width: 52px;"></span>
+    </header>
+
+    <main class="proto-screen">
+      <div class="proto-field">
+        <label class="proto-field__label" for="device-name">Diffuser name</label>
+        <input type="text" id="device-name" class="proto-field__input" value="Living Room" placeholder="e.g. Living Room" maxlength="32">
+      </div>
+      <button type="button" class="proto-btn proto-btn--secondary" style="width: 100%; margin-bottom: var(--space-xl);">Save name</button>
+
+      <p class="proto-section-title">Danger zone</p>
+      <p style="font-size: var(--text-caption); color: var(--color-text-secondary); margin: 0 0 var(--space-md);">
+        Removing the diffuser will unbind it from this app. You will need to re-pair the device to add it again.
+      </p>
+      <button type="button" class="proto-btn proto-btn--danger" id="remove-btn" style="width: 100%;">Remove diffuser</button>
+    </main>
+  </div>
+
+  <!-- Confirmation modal (hidden by default) -->
+  <div id="confirm-modal" class="proto-overlay" style="display: none;" aria-hidden="true">
+    <div class="proto-modal" role="dialog" aria-labelledby="confirm-title" aria-modal="true">
+      <h2 id="confirm-title" class="proto-modal__title">Remove diffuser?</h2>
+      <p class="proto-modal__text">
+        This will unbind the diffuser from the app. You will need to re-pair it to control it again. This cannot be undone.
+      </p>
+      <div class="proto-modal__actions">
+        <button type="button" class="proto-btn proto-btn--ghost" id="confirm-cancel">Cancel</button>
+        <button type="button" class="proto-btn proto-btn--danger" id="confirm-remove">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var removeBtn = document.getElementById('remove-btn');
+      var modal = document.getElementById('confirm-modal');
+      var cancelBtn = document.getElementById('confirm-cancel');
+      var confirmRemoveBtn = document.getElementById('confirm-remove');
+
+      removeBtn.addEventListener('click', function() {
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+      });
+
+      function closeModal() {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      cancelBtn.addEventListener('click', closeModal);
+      confirmRemoveBtn.addEventListener('click', function() {
+        closeModal();
+        window.location.href = 'device-list.html';
+      });
+
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+      });
+    })();
+  </script>
+</body>
+</html>

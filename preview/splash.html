@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Arozen</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .splash {
+      min-height: var(--app-min-height);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-2xl);
+      background: var(--color-bg-solid);
+      position: relative;
+      z-index: 1;
+    }
+    .splash__logo {
+      width: 140px;
+      max-width: 70%;
+      height: auto;
+      margin-bottom: var(--space-xl);
+    }
+    .splash__text {
+      font-size: var(--text-caption);
+      color: var(--color-text-muted);
+      margin-top: var(--space-lg);
+    }
+    .splash__skip {
+      margin-top: var(--space-xl);
+      font-size: var(--text-caption);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .splash__skip:hover {
+      color: var(--color-accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-app">
+    <div class="splash">
+      <img src="assets/logo.svg" alt="Arozen" class="splash__logo" width="140" height="25">
+      <div class="splash__spinner proto-spinner" aria-hidden="true"></div>
+      <p class="splash__text">Loading…</p>
+      <a href="device-list.html" class="splash__skip">Skip to app</a>
+    </div>
+  </div>
+  <script>
+    setTimeout(function() {
+      window.location.href = 'device-list.html';
+    }, 2500);
+  </script>
+</body>
+</html>

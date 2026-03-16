@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Add diffuser — Arozen</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .pairing-step h2 { font-weight: var(--font-weight-medium); }
+    .pairing-step p { line-height: 1.6; }
+    .pairing-success__device-img {
+      width: 120px;
+      height: auto;
+      margin: 0 auto var(--space-lg);
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-app">
+    <header class="proto-app-bar">
+      <a href="device-list.html" class="proto-app-bar__back">← Cancel</a>
+      <span class="proto-app-bar__title">Add diffuser</span>
+      <span style="width: 52px;"></span>
+    </header>
+
+    <main class="proto-screen">
+      <!-- Step indicator -->
+      <div class="proto-steps">
+        <div class="proto-step proto-step--done" id="step1-indicator">
+          <span class="proto-step__num">1</span>
+          <span class="proto-step__label">Permissions</span>
+        </div>
+        <div class="proto-step proto-step--current" id="step2-indicator">
+          <span class="proto-step__num">2</span>
+          <span class="proto-step__label">Prepare</span>
+        </div>
+        <div class="proto-step" id="step3-indicator">
+          <span class="proto-step__num">3</span>
+          <span class="proto-step__label">Wi‑Fi</span>
+        </div>
+        <div class="proto-step" id="step4-indicator">
+          <span class="proto-step__num">4</span>
+          <span class="proto-step__label">Pairing</span>
+        </div>
+      </div>
+
+      <!-- Step 1: Permissions -->
+      <div id="step1" class="pairing-step">
+        <h2 style="font-size: var(--text-heading); margin: 0 0 var(--space-md);">Permissions needed</h2>
+        <p style="color: var(--color-text-secondary); margin: 0 0 var(--space-lg);">
+          To find and connect your diffuser, the app may need access to location (Android) and Bluetooth. We’ll only use these during setup. Exact permissions depend on your device and connectivity type.
+        </p>
+        <button type="button" class="proto-btn proto-btn--accent" id="step1-next">Continue</button>
+      </div>
+
+      <!-- Step 2: Prepare device -->
+      <div id="step2" class="pairing-step" style="display: none;">
+        <h2 style="font-size: var(--text-heading); margin: 0 0 var(--space-md);">Put diffuser in pairing mode</h2>
+        <p style="color: var(--color-text-secondary); margin: 0 0 var(--space-md);">
+          Make sure the diffuser is powered on. Then press and hold the pairing button until the indicator light starts blinking (see your product manual for the exact button).
+        </p>
+        <p style="font-size: var(--text-caption); color: var(--color-text-muted); margin: 0 0 var(--space-lg);">
+          If the diffuser is already paired to another app, you may need to reset it first.
+        </p>
+        <button type="button" class="proto-btn proto-btn--accent" id="step2-next">I’m ready — continue</button>
+      </div>
+
+      <!-- Step 3: Wi‑Fi (if applicable) -->
+      <div id="step3" class="pairing-step" style="display: none;">
+        <h2 style="font-size: var(--text-heading); margin: 0 0 var(--space-md);">Connect to Wi‑Fi</h2>
+        <p style="color: var(--color-text-secondary); margin: 0 0 var(--space-md);">
+          Select the same 2.4 GHz Wi‑Fi network your phone uses. The diffuser does not support 5 GHz networks.
+        </p>
+        <div class="proto-field">
+          <label class="proto-field__label" for="wifi-ssid">Network name</label>
+          <input type="text" id="wifi-ssid" class="proto-field__input" placeholder="Your Wi‑Fi name" value="">
+        </div>
+        <div class="proto-field">
+          <label class="proto-field__label" for="wifi-password">Password</label>
+          <input type="password" id="wifi-password" class="proto-field__input" placeholder="Wi‑Fi password">
+        </div>
+        <button type="button" class="proto-btn proto-btn--accent" id="step3-next">Start pairing</button>
+      </div>
+
+      <!-- Step 4: Progress / Result -->
+      <div id="step4" class="pairing-step" style="display: none;">
+        <div id="step4-progress">
+          <h2 style="font-size: var(--text-heading); margin: 0 0 var(--space-md);">Pairing…</h2>
+          <p style="color: var(--color-text-secondary); margin: 0 0 var(--space-lg);">
+            Keep the diffuser powered on and nearby. This may take up to a minute.
+          </p>
+          <div class="proto-loading">
+            <div class="proto-spinner" aria-hidden="true"></div>
+          </div>
+          <p style="font-size: var(--text-caption); color: var(--color-text-muted); margin-top: var(--space-lg);">
+            (In the prototype, use the buttons below to simulate success or failure.)
+          </p>
+          <div style="margin-top: var(--space-lg); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+            <button type="button" class="proto-btn proto-btn--accent" id="sim-success">Simulate success</button>
+            <button type="button" class="proto-btn proto-btn--secondary" id="sim-fail">Simulate failure</button>
+          </div>
+        </div>
+
+        <div id="step4-success" style="display: none;">
+          <img src="assets/diffuser-eon-pro-v2.png" alt="Arozen Eon Pro V2" class="pairing-success__device-img">
+          <h2 style="font-size: var(--text-heading); margin: 0 0 var(--space-md); color: var(--color-online);">Diffuser added</h2>
+          <p style="color: var(--color-text-secondary); margin: 0 0 var(--space-lg);">
+            Your diffuser is now connected. You can control it from the device list.
+          </p>
+          <a href="device-list.html" class="proto-btn proto-btn--accent">Done</a>
+        </div>
+
+        <div id="step4-fail" style="display: none;">
+          <h2 style="font-size: var(--text-heading); margin: 0 0 var(--space-md); color: var(--color-error);">Pairing failed</h2>
+          <p style="color: var(--color-text-secondary); margin: 0 0 var(--space-lg);">
+            We couldn’t connect to the diffuser. Check that it’s in pairing mode, that you’re on the right Wi‑Fi network, and try again.
+          </p>
+          <button type="button" class="proto-btn proto-btn--accent" id="retry-btn">Retry</button>
+          <a href="device-list.html" class="proto-btn proto-btn--ghost" style="margin-top: var(--space-sm); display: inline-block;">Back to device list</a>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    (function() {
+      var currentStep = 1;
+      var steps = [document.getElementById('step1'), document.getElementById('step2'), document.getElementById('step3'), document.getElementById('step4')];
+      var indicators = [
+        document.getElementById('step1-indicator'),
+        document.getElementById('step2-indicator'),
+        document.getElementById('step3-indicator'),
+        document.getElementById('step4-indicator')
+      ];
+
+      function goToStep(n) {
+        steps.forEach(function(el, i) { el.style.display = (i + 1 === n) ? 'block' : 'none'; });
+        indicators.forEach(function(el, i) {
+          el.classList.remove('proto-step--current', 'proto-step--done');
+          if (i + 1 < n) el.classList.add('proto-step--done');
+          else if (i + 1 === n) el.classList.add('proto-step--current');
+        });
+        currentStep = n;
+      }
+
+      document.getElementById('step1-next').addEventListener('click', function() { goToStep(2); });
+      document.getElementById('step2-next').addEventListener('click', function() { goToStep(3); });
+      document.getElementById('step3-next').addEventListener('click', function() { goToStep(4); });
+
+      var progress = document.getElementById('step4-progress');
+      var success = document.getElementById('step4-success');
+      var fail = document.getElementById('step4-fail');
+
+      document.getElementById('sim-success').addEventListener('click', function() {
+        progress.style.display = 'none';
+        success.style.display = 'block';
+        fail.style.display = 'none';
+      });
+      document.getElementById('sim-fail').addEventListener('click', function() {
+        progress.style.display = 'none';
+        success.style.display = 'none';
+        fail.style.display = 'block';
+      });
+      document.getElementById('retry-btn').addEventListener('click', function() {
+        progress.style.display = 'block';
+        success.style.display = 'none';
+        fail.style.display = 'none';
+      });
+    })();
+  </script>
+</body>
+</html>
