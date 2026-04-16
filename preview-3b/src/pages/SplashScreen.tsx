@@ -28,7 +28,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
         className="flex flex-col items-center">
         
         <img
-          src="/White_png_-_medium.png"
+          src={`${import.meta.env.BASE_URL}White_png_-_medium.png`}
           alt="Arozen"
           className="w-56 mb-6" />
         
