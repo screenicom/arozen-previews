@@ -19,15 +19,33 @@ export default defineConfig({
 
 If you skip this step, the app may load a blank page or break assets, because script and CSS paths will be wrong under a subfolder.
 
-### Images and files in `public/`
+### Images and static files (avoid broken logos / missing images)
 
-Do **not** use root-absolute URLs like `src="/logo.png"` in components. On GitHub Pages that resolves to the domain root, not your preview, so images disappear. Prefix with Vite’s base URL:
+**Do not** use root-absolute paths in JSX or CSS, for example `src="/logo.png"` or `url(/logo.png)`. On GitHub Pages those resolve to `https://screenicom.github.io/logo.png`, not under your preview, so the browser shows a broken image.
+
+**Preferred: import from `src/assets/`**  
+Put images next to your code (e.g. `src/assets/logo.png`) and import them. Vite emits them under `dist/assets/` with hashed filenames and correct `/arozen-previews/<folder>/dist/assets/...` URLs—the same mechanism as your JS and CSS bundles.
+
+```tsx
+import logo from '../assets/logo.png';
+
+<img src={logo} alt="" />
+```
+
+For TypeScript, ensure `src/vite-env.d.ts` exists with:
+
+```ts
+/// <reference types="vite/client" />
+```
+
+**Alternative: files in `public/`**  
+If the file must live in `public/`, reference it with the base URL (not a leading `/` alone):
 
 ```tsx
 <img src={`${import.meta.env.BASE_URL}logo.png`} alt="" />
 ```
 
-(Or import assets from `src/` so Vite rewrites the URL in the bundle.)
+Imports from `src/assets/` are still recommended for UI images because they are less error-prone than remembering `BASE_URL` for every asset.
 
 ## 2. Install and build
 
@@ -69,6 +87,7 @@ Whenever you edit the app under a preview folder, run `npm run build` again, com
 | Step | Done |
 |------|------|
 | `base` in `vite.config.ts` is `/arozen-previews/<folder>/dist/` | |
+| No `src="/..."` for images; use `src/assets/` imports or `${import.meta.env.BASE_URL}...` | |
 | `npm run build` completed | |
 | `git add -f <folder>/dist/` (and vite config if changed) | |
 | Pushed to `main` | |
