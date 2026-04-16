@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import logoWhite from '../assets/logo-white.png';
 interface SplashScreenProps {
   onComplete: () => void;
 }
@@ -28,7 +29,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
         className="flex flex-col items-center">
         
         <img
-          src={`${import.meta.env.BASE_URL}White_png_-_medium.png`}
+          src={logoWhite}
           alt="Arozen"
           className="w-56 mb-6" />
         
