@@ -1,0 +1,207 @@
+import React, { useEffect, useState, useRef } from 'react';
+import {
+  PlusIcon,
+  MenuIcon,
+  InfoIcon,
+  LogOutIcon,
+  XIcon,
+  ExternalLinkIcon,
+  UserIcon,
+  ChevronRightIcon } from
+'lucide-react';
+import { Device } from '../types';
+import { DeviceCard } from '../components/DeviceCard';
+import { motion, AnimatePresence } from 'framer-motion';
+interface DeviceListScreenProps {
+  devices: Device[];
+  onDeviceSelect: (id: string) => void;
+  onTogglePower: (id: string) => void;
+  onAddDevice: () => void;
+  onOpenAppInfo: () => void;
+  onOpenAccount: () => void;
+  onLogout: () => void;
+}
+export function DeviceListScreen({
+  devices,
+  onDeviceSelect,
+  onTogglePower,
+  onAddDevice,
+  onOpenAppInfo,
+  onOpenAccount,
+  onLogout
+}: DeviceListScreenProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuOpen]);
+  return (
+    <div className="flex flex-col h-full bg-arozen-grey relative">
+      {/* Header */}
+      <div className="bg-white px-6 pt-14 pb-4 flex justify-between items-center shadow-sm shadow-gray-200 z-30">
+        <h1 className="text-2xl font-medium text-gray-900 font-heading">
+          My Diffusers
+        </h1>
+        <div className="relative" ref={menuRef}>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="p-2 text-gray-400 hover:text-arozen-gold transition-colors">
+            
+            {menuOpen ?
+            <XIcon className="w-6 h-6" /> :
+
+            <MenuIcon className="w-6 h-6" />
+            }
+          </button>
+
+          {/* Dropdown Menu */}
+          <AnimatePresence>
+            {menuOpen &&
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.95,
+                y: -4
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.95,
+                y: -4
+              }}
+              transition={{
+                duration: 0.15
+              }}
+              className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg shadow-gray-200/50 overflow-hidden z-50">
+              
+                <a
+                href="https://arozen.com.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="w-full flex items-center space-x-3 px-4 py-3.5 text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100">
+                
+                  <ExternalLinkIcon className="w-5 h-5 text-gray-400" />
+                  <span className="text-sm font-medium font-body">
+                    Visit our shop
+                  </span>
+                </a>
+                <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  onOpenAppInfo();
+                }}
+                className="w-full flex items-center space-x-3 px-4 py-3.5 text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100">
+                
+                  <InfoIcon className="w-5 h-5 text-gray-400" />
+                  <span className="text-sm font-medium font-body">
+                    About Arozen
+                  </span>
+                </button>
+                <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  onOpenAccount();
+                }}
+                className="w-full flex items-center space-x-3 px-4 py-3.5 text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100">
+                
+                  <UserIcon className="w-5 h-5 text-gray-400" />
+                  <span className="text-sm font-medium font-body">
+                    My Account
+                  </span>
+                </button>
+                <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  onLogout();
+                }}
+                className="w-full flex items-center space-x-3 px-4 py-3.5 text-arozen-danger hover:bg-red-50 transition-colors">
+                
+                  <LogOutIcon className="w-5 h-5" />
+                  <span className="text-sm font-medium font-body">Log Out</span>
+                </button>
+              </motion.div>
+            }
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto px-4 py-6 phone-scroll">
+        {devices.length === 0 ?
+        <div className="flex flex-col items-center justify-center h-full text-center px-6">
+            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+              <PlusIcon className="w-10 h-10 text-gray-400" />
+            </div>
+            <h2 className="text-xl font-medium text-gray-900 mb-2 font-heading">
+              No diffusers yet
+            </h2>
+            <p className="text-gray-500 mb-8 font-body">
+              Add your first Arozen diffuser to start controlling your home's
+              scent.
+            </p>
+            <button
+            onClick={onAddDevice}
+            className="bg-arozen-black text-white font-medium py-3 px-8 rounded-xl shadow-lg shadow-black/20 active:scale-95 transition-transform font-body">
+            
+              Add Diffuser
+            </button>
+          </div> :
+
+        <div className="space-y-2 pb-8">
+            <button
+            onClick={onAddDevice}
+            className="w-full mb-3 bg-arozen-black text-white rounded-2xl p-4 flex items-center justify-center space-x-2 shadow-lg shadow-black/20 active:scale-[0.98] transition-transform font-body">
+            
+              <PlusIcon className="w-5 h-5" />
+              <span className="text-sm font-medium">Add Diffuser</span>
+            </button>
+            {devices.map((device) =>
+          <DeviceCard
+            key={device.id}
+            device={device}
+            onClick={() => onDeviceSelect(device.id)}
+            onTogglePower={() => onTogglePower(device.id)} />
+
+          )}
+          </div>
+        }
+      </div>
+
+      {/* Shop CTA Footer */}
+      <a
+        href="https://arozen.com.au"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative bg-arozen-black text-white px-5 py-3 flex items-center justify-between active:scale-[0.99] transition-transform z-10">
+        
+        <div className="flex items-center space-x-3">
+          <img
+            src={`${import.meta.env.BASE_URL}F93EBFD6-3848-4EBB-80D4-6895633CF230-LR.jpg`}
+            alt="Arozen fragrance bottles"
+            className="w-14 h-14 rounded-2xl object-cover flex-shrink-0" />
+          
+          <div className="leading-tight">
+            <p className="text-sm font-medium font-body">Shop for scents</p>
+            <p className="text-xs text-gray-400 font-body">
+              Discover the Arozen online store
+            </p>
+          </div>
+        </div>
+        <ChevronRightIcon className="w-5 h-5 text-gray-400" />
+      </a>
+    </div>);
+
+}
