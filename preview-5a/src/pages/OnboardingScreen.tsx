@@ -22,7 +22,7 @@ const SLIDES: Slide[] = [
   description:
   'Control your Arozen diffusers from anywhere. Adjust settings with a simple tap.',
   icon: SmartphoneIcon,
-  image: "/F93EBFD6-3848-4EBB-80D4-6895633CF230-LR-2.jpg"
+  image: 'F93EBFD6-3848-4EBB-80D4-6895633CF230-LR-2.jpg'
 
 },
 {
@@ -31,7 +31,7 @@ const SLIDES: Slide[] = [
   description:
   'Set it and forget it. Create automated schedules that fit perfectly into your daily routine.',
   icon: CalendarClockIcon,
-  image: "/A7BD2579-5F3F-4B0D-82DA-9D397AFAC565-LR.jpg"
+  image: 'A7BD2579-5F3F-4B0D-82DA-9D397AFAC565-LR.jpg'
 
 },
 {
@@ -40,7 +40,7 @@ const SLIDES: Slide[] = [
   description:
   'Fine-tune misting frequency and duration to create your ideal atmosphere.',
   icon: SlidersHorizontalIcon,
-  image: "/002A3776-LR.jpg"
+  image: '002A3776-LR.jpg'
 
 }];
 
@@ -86,7 +86,7 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
             <div className="w-60 h-60 bg-arozen-gold/10 rounded-full flex items-center justify-center mb-10 overflow-hidden">
               {SLIDES[currentSlide].image ?
               <img
-                src={SLIDES[currentSlide].image}
+                src={`${import.meta.env.BASE_URL}${SLIDES[currentSlide].image}`}
                 alt={SLIDES[currentSlide].title}
                 className="w-full h-full object-cover" /> :
 
