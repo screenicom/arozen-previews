@@ -91,9 +91,9 @@ export function DeviceListScreen({
         
         <div className="flex items-center space-x-3">
           <img
-            src={`${import.meta.env.BASE_URL}horizon_transp-300.png`}
-            alt="Arozen Azure Horizon fragrance"
-            className="w-14 h-14 object-contain flex-shrink-0" />
+            src={`${import.meta.env.BASE_URL}F93EBFD6-3848-4EBB-80D4-6895633CF230-LR.jpg`}
+            alt="Arozen fragrance bottles"
+            className="w-14 h-14 rounded-2xl object-cover flex-shrink-0" />
           
           <div className="leading-tight">
             <p className="text-sm font-medium font-body">Shop for scents</p>
