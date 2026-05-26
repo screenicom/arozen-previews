@@ -70,6 +70,8 @@ git commit -m "Add preview-4 and publish dist for GitHub Pages"
 git push
 ```
 
+Pushing to `main` runs `.github/workflows/deploy-pages.yml`, which publishes only static assets (`preview/` and each `preview-*/dist/`) to GitHub Pages. In **Settings → Pages**, set **Build and deployment → Source** to **GitHub Actions**.
+
 ## 4. Check the live URL
 
 After the push, wait a minute for Pages to update, then open:
