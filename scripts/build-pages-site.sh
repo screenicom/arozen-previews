@@ -10,7 +10,7 @@ touch "$SITE/.nojekyll"
 
 cp -r "$ROOT/preview" "$SITE/"
 
-for dir in preview-2 preview-3 preview-3b preview-3c preview-4a preview-5a preview-5b preview-5d preview-5e preview-6a; do
+for dir in preview-2 preview-3 preview-3b preview-3c preview-4a preview-5a preview-5b preview-5d preview-5e preview-5e2 preview-6a; do
   if [ -d "$ROOT/$dir/dist" ]; then
     mkdir -p "$SITE/$dir"
     cp -r "$ROOT/$dir/dist" "$SITE/$dir/"
