@@ -59,30 +59,47 @@ npm run build
 
 This creates `preview-4/dist/`.
 
-## 3. Commit the built `dist` folder
+## 3. Register the folder for deploy
 
-`dist` is listed in `.gitignore`, so Git will not track it unless you force-add it. That is intentional for local builds; for GitHub Pages you **must** commit the production output, same as `preview-2` and `preview-3`.
+The GitHub Actions workflow only publishes folders listed in `scripts/build-pages-site.sh`. Add your preview name to the `for dir in …` line (same pattern as `preview-5d`):
 
 ```bash
-git add preview-4/vite.config.ts
+for dir in preview-2 preview-3 … preview-4 …; do
+```
+
+If you skip this, `dist` can be committed on `main` but the live site will still 404 until the script includes your folder.
+
+## 4. Commit the built `dist` folder
+
+`dist` is listed in each preview’s `.gitignore`, so Git will not track it unless you force-add it. That is intentional for local builds; the deploy workflow reads **committed** `dist/` output from `main`.
+
+```bash
+git add preview-4/vite.config.ts scripts/build-pages-site.sh
 git add -f preview-4/dist/
 git commit -m "Add preview-4 and publish dist for GitHub Pages"
 git push
 ```
 
-Pushing to `main` runs `.github/workflows/deploy-pages.yml`, which publishes only static assets (`preview/` and each `preview-*/dist/`) to GitHub Pages. In **Settings → Pages**, set **Build and deployment → Source** to **GitHub Actions**.
+Pushing to `main` runs `.github/workflows/deploy-pages.yml`. That job builds a minimal `_site` (static `preview/` plus each listed `preview-*/dist/`) and deploys with the Pages Actions (`v4` only — do not add a second `upload-pages-artifact` step).
 
-## 4. Check the live URL
+**One-time repo setting:** **Settings → Pages → Build and deployment → Source** must be **GitHub Actions** (not “Deploy from a branch”). This repo is already configured that way.
 
-After the push, wait a minute for Pages to update, then open:
+## 5. Check the deploy and live URL
+
+1. Open **Actions** on GitHub and confirm **Deploy GitHub Pages** succeeded for your push (a green run).
+2. After a minute, open:
 
 `https://screenicom.github.io/arozen-previews/preview-4/dist/`
 
-(Again, substitute your folder name for `preview-4`.)
+(Substitute your folder name for `preview-4`.)
+
+If the workflow is green but the URL 404s, check that your folder is in `scripts/build-pages-site.sh` and that `dist/` was force-added and pushed.
 
 ## After you change source code
 
 Whenever you edit the app under a preview folder, run `npm run build` again, commit the updated files under `that-preview/dist/` (`git add -f …/dist/`), and push. If you only push source changes and not a new `dist`, the live site will stay on the old build.
+
+Optionally add the live link to `PREVIEW-LINKS.md`.
 
 ## Quick checklist
 
@@ -91,5 +108,7 @@ Whenever you edit the app under a preview folder, run `npm run build` again, com
 | `base` in `vite.config.ts` is `/arozen-previews/<folder>/dist/` | |
 | No `src="/..."` for images; use `src/assets/` imports or `${import.meta.env.BASE_URL}...` | |
 | `npm run build` completed | |
-| `git add -f <folder>/dist/` (and vite config if changed) | |
+| Folder added to `scripts/build-pages-site.sh` | |
+| `git add -f <folder>/dist/` (and vite config / build script if changed) | |
 | Pushed to `main` | |
+| **Deploy GitHub Pages** workflow succeeded in Actions | |
