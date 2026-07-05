@@ -23,3 +23,6 @@ https://screenicom.github.io/arozen-previews/preview-5f/dist/
 
 Preview 6a (Vite/React):  
 https://screenicom.github.io/arozen-previews/preview-6a/dist/
+
+Preview 6b (Vite/React):  
+https://screenicom.github.io/arozen-previews/preview-6b/dist/
