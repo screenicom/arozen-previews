@@ -1,0 +1,79 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+interface SplashScreenProps {
+  onComplete: () => void;
+  onSkipToHome: () => void;
+}
+export function SplashScreen({ onComplete, onSkipToHome }: SplashScreenProps) {
+  return (
+    <div
+      className="flex flex-col h-full relative"
+      style={{
+        backgroundImage:
+        "url('https://cdn.magicpatterns.com/uploads/ocbdvfUrq9Gk9b1Ygr5NUC/002A6129-LR-2.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}>
+      
+      {/* Logo + tagline — anchored in the upper empty area */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          scale: 0.92
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1
+        }}
+        transition={{
+          duration: 0.8,
+          ease: 'easeOut'
+        }}
+        className="relative flex flex-col items-center pt-44">
+        
+        <img
+          src={`${import.meta.env.BASE_URL}Black_png_-_medium.png`}
+          alt="Arozen"
+          className="w-48 mb-5" />
+        
+        <div className="text-arozen-gold font-medium tracking-[0.25em] text-[11px] uppercase font-body text-center leading-relaxed">
+          <p>Luxury Scenting</p>
+          <p>For Your Home & Business</p>
+        </div>
+      </motion.div>
+
+      {/* Get Started button — unchanged position */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20
+        }}
+        animate={{
+          opacity: 1,
+          y: 0
+        }}
+        transition={{
+          delay: 0.8,
+          duration: 0.6,
+          ease: 'easeOut'
+        }}
+        className="absolute bottom-16 inset-x-0 px-8">
+        
+        <button
+          onClick={onComplete}
+          className="w-full bg-arozen-black text-white font-medium py-4 rounded-xl shadow-lg shadow-black/20 active:scale-[0.98] transition-transform font-body">
+          
+          Get Started
+        </button>
+      </motion.div>
+
+      {/* Temporary dev shortcut — does not affect Get Started position */}
+      <button
+        onClick={onSkipToHome}
+        className="absolute bottom-6 inset-x-0 mx-auto text-white/80 text-sm font-medium py-2 active:scale-[0.98] transition-transform font-body underline underline-offset-4">
+        
+        Home
+      </button>
+    </div>);
+
+}
