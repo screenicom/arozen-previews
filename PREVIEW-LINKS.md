@@ -38,3 +38,6 @@ https://screenicom.github.io/arozen-previews/preview-6d2/dist/
 
 Preview 6d3 (Vite/React):  
 https://screenicom.github.io/arozen-previews/preview-6d3/dist/
+
+Preview 7 (Vite/React):  
+https://screenicom.github.io/arozen-previews/preview-7/dist/
