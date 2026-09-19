@@ -9,7 +9,8 @@ export function SplashScreen({ onComplete, onSkipToHome }: SplashScreenProps) {
     <div
       className="flex flex-col h-full relative"
       style={{
-        backgroundImage: `url('${import.meta.env.BASE_URL}2026-09-02/${encodeURIComponent('Image 1 - Get Started.png')}')`,
+        backgroundImage:
+        "url('https://cdn.magicpatterns.com/uploads/ocbdvfUrq9Gk9b1Ygr5NUC/002A6129-LR-2.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}>

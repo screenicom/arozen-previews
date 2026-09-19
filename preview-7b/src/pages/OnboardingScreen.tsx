@@ -9,32 +9,27 @@ type Slide = {
   title: string;
   description: string;
   image: string;
-  lightText?: boolean;
-  whiteWash?: boolean;
 };
 const SLIDES: Slide[] = [
 {
   id: 1,
   title: 'More Than a Scent',
   description:
-  'Every space has a feeling. Arozen turns it into a memory worth keeping.',
-  image: '2026-09-02/ALT2_B2B.png',
-  lightText: true
+  'Every space has a feeling.\nArozen turns it into a memory\nworth keeping.',
+  image: '2026-09-19/2 - AZ_App_Screen2_MoreThanAScent_STEEL.png'
 },
 {
   id: 2,
   title: 'Smart Scheduling',
   description: 'Effortless scheduling, every day.',
-  image: 'onboarding-smart-scheduling.png',
-  whiteWash: true
+  image: 'onboarding-smart-scheduling.png'
 },
 {
   id: 3,
-  title: 'Home & Business Scenting',
+  title: 'Home & Business\nScenting',
   description:
-  'One system, styled for any space — from your living room to your storefront.',
-  image: '2026-09-02/ALT2_Effortless-Scenting_ORIGINAL_IMG_9530.png',
-  lightText: true
+  'One system, styled for any space —\nfrom your living room\nto your storefront.',
+  image: '2026-09-19/4 - AZ_App_Screen4_HomeAndBusiness.png'
 }];
 
 const AUTH_IMAGE = 'onboarding-login-hero.png';
@@ -51,8 +46,6 @@ export function OnboardingScreen({
   const backgroundImage = isAuthSlide ?
   AUTH_IMAGE :
   SLIDES[currentSlide].image;
-  const lightText = !isAuthSlide && Boolean(SLIDES[currentSlide].lightText);
-  const whiteWash = !isAuthSlide && Boolean(SLIDES[currentSlide].whiteWash);
   const handleNext = () => {
     setCurrentSlide((prev) => Math.min(prev + 1, TOTAL_STEPS - 1));
   };
@@ -85,17 +78,10 @@ export function OnboardingScreen({
         
       </AnimatePresence>
 
-      {whiteWash &&
-      <>
-          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-white/90 via-white/50 to-transparent pointer-events-none z-[1]" />
-          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-white/80 via-white/40 to-transparent pointer-events-none z-[1]" />
-        </>
-      }
-
       {!isAuthSlide &&
       <button
         onClick={() => setCurrentSlide(SLIDES.length)}
-        className={`absolute top-12 right-6 font-medium text-sm z-10 font-body ${lightText ? 'text-white' : 'text-gray-900'}`}>
+        className="absolute top-12 right-6 font-medium text-sm z-10 font-body text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.45)]">
         
           Skip
         </button>
@@ -122,14 +108,23 @@ export function OnboardingScreen({
             }}
             className="flex flex-col items-center text-center w-full">
             
-            {!isAuthSlide &&
+            {isAuthSlide ?
             <>
-                <h2 className={`text-2xl font-medium mb-4 font-heading ${lightText ? 'text-white' : 'text-gray-900'}`}>
+                <img
+                  src={`${import.meta.env.BASE_URL}Black_png_-_medium.png`}
+                  alt="Arozen"
+                  className="w-48 mb-5" />
+                
+                <div className="text-arozen-gold font-medium tracking-[0.25em] text-[11px] uppercase font-body text-center leading-relaxed">
+                  <p>Premium Scenting</p>
+                </div>
+              </> :
+
+            <>
+                <h2 className="text-2xl mb-4 font-heading font-semibold text-white whitespace-pre-line">
                   {SLIDES[currentSlide].title}
                 </h2>
-                <p
-                  className={`leading-relaxed font-body ${lightText ? 'text-white' : 'text-gray-700'}`}>
-                  
+                <p className="leading-relaxed font-body font-medium text-white whitespace-pre-line">
                   {SLIDES[currentSlide].description}
                 </p>
               </>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { TagIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { BottomTabs } from '../components/BottomTabs';
 import { TabKey } from '../types';
@@ -70,33 +69,20 @@ export function HomeScreen({ onTabChange, onConnectDevice }: HomeScreenProps) {
           href="https://arozen.com.au"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative block w-full rounded-3xl overflow-hidden bg-[#F3EFE8] min-h-[180px]">
+          className="relative block w-full rounded-3xl overflow-hidden min-h-[180px]">
           
-          {/* Background image */}
           <img
-            src={`${import.meta.env.BASE_URL}A7BD2579-5F3F-4B0D-82DA-9D397AFAC565-LR.jpg`}
+            src={`${import.meta.env.BASE_URL}2026-09-19/${encodeURIComponent('ALT2_Subscribe-Banner_ORIGINAL_IMG_9528.png')}`}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-90" />
+            className="absolute inset-0 w-full h-full object-cover object-right" />
           
-          {/* Left fade so the headline stays legible */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-              'linear-gradient(to right, rgba(243,239,232,0.95) 0%, rgba(243,239,232,0.75) 35%, rgba(243,239,232,0) 65%)'
-            }} />
-          
-          {/* Content */}
-          <div className="relative z-10 p-6 max-w-[62%]">
-            <div className="w-9 h-9 rounded-full bg-white/90 flex items-center justify-center mb-4 shadow-sm">
-              <TagIcon className="w-4 h-4 text-arozen-gold" strokeWidth={1.5} />
-            </div>
-            <h2 className="text-[19px] font-medium text-gray-900 font-heading tracking-tight leading-tight">
+          <div className="relative z-10 pt-4 px-6 pb-6 max-w-[62%]">
+            <h2 className="text-[19px] font-medium text-white font-heading tracking-tight leading-tight">
               Subscribe and
               <br />
               save up to 30%
             </h2>
-            <p className="text-sm text-gray-500 font-body mt-2 leading-snug">
+            <p className="text-sm text-white font-body mt-2 leading-snug">
               Enjoy your favourite scents, delivered to you.
             </p>
           </div>
