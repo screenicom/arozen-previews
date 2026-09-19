@@ -81,7 +81,7 @@ export function OnboardingScreen({
       {!isAuthSlide &&
       <button
         onClick={() => setCurrentSlide(SLIDES.length)}
-        className="absolute top-12 right-6 font-medium text-sm z-10 font-body text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.45)]">
+        className="absolute top-12 right-6 font-medium text-sm z-10 font-body text-white">
         
           Skip
         </button>
