@@ -72,7 +72,7 @@ export function HomeScreen({ onTabChange, onConnectDevice }: HomeScreenProps) {
           className="relative block w-full rounded-3xl overflow-hidden min-h-[180px]">
           
           <img
-            src={`${import.meta.env.BASE_URL}2026-09-19/${encodeURIComponent('ALT2_Subscribe-Banner_ORIGINAL_IMG_9528.png')}`}
+            src={`${import.meta.env.BASE_URL}2026-09-22/${encodeURIComponent('Banner.png')}`}
             alt=""
             className="absolute inset-0 w-full h-full object-cover object-right" />
           
