@@ -27,37 +27,25 @@ export function HomeScreen({ onTabChange, onConnectDevice }: HomeScreenProps) {
             scale: 0.99
           }}
           onClick={onConnectDevice}
-          className="relative w-full bg-[#F3EFE8] rounded-3xl overflow-hidden text-left flex items-stretch min-h-[210px]">
+          className="relative flex w-full flex-col items-start rounded-3xl overflow-hidden text-left min-h-[210px]">
           
-          <div className="flex-1 pl-6 pr-2 py-6 flex flex-col justify-between relative z-10">
-            <div>
-              <h2 className="text-[19px] font-medium text-gray-900 font-heading tracking-tight leading-tight">
-                Set up your
-                <br />
-                diffuser.
-              </h2>
-              <p className="text-sm text-gray-500 font-body mt-2 max-w-[150px] leading-snug">
-                Be in control of your scent from anywhere.
-              </p>
-            </div>
-            <span className="inline-flex self-start items-center bg-arozen-green text-white font-medium text-sm py-2.5 px-5 rounded-full shadow-sm shadow-arozen-green/20 font-body whitespace-nowrap">
+          <img
+            src={`${import.meta.env.BASE_URL}2026-09-22/${encodeURIComponent('banner-1b.png')}`}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-right" />
+          
+          <div className="relative z-10 pl-6 pr-2 py-6 max-w-[58%]">
+            <h2 className="text-[19px] font-semibold text-gray-900 font-heading tracking-tight leading-tight">
+              Set up your
+              <br />
+              diffuser
+            </h2>
+            <p className="text-sm text-gray-800 font-body mt-2 max-w-[150px] leading-snug">
+              Be in control of your scent from anywhere.
+            </p>
+            <span className="inline-flex self-start items-center bg-arozen-black text-white font-medium text-sm mt-4 py-2.5 px-5 rounded-full shadow-sm shadow-black/20 font-body whitespace-nowrap">
               Connect my device
             </span>
-          </div>
-          {/* Diffuser image with halo */}
-          <div className="relative w-[45%] flex-shrink-0 flex items-center justify-center">
-            <div
-              className="absolute w-40 h-40 rounded-full pointer-events-none"
-              style={{
-                background:
-                'radial-gradient(circle, rgba(255,255,255,0.9) 35%, rgba(255,255,255,0) 70%)'
-              }} />
-            
-            <img
-              src={`${import.meta.env.BASE_URL}eon-transp.png`}
-              alt="Arozen diffuser"
-              className="relative h-44 w-auto object-contain z-10" />
-            
           </div>
         </motion.button>
 
@@ -72,18 +60,22 @@ export function HomeScreen({ onTabChange, onConnectDevice }: HomeScreenProps) {
           className="relative block w-full rounded-3xl overflow-hidden min-h-[180px]">
           
           <img
-            src={`${import.meta.env.BASE_URL}2026-09-22/${encodeURIComponent('Banner.png')}`}
+            src={`${import.meta.env.BASE_URL}2026-09-22/${encodeURIComponent('banner-2b.jpg')}`}
             alt=""
             className="absolute inset-0 w-full h-full object-cover object-right" />
           
-          <div className="relative z-10 pt-4 px-6 pb-6 max-w-[62%]">
-            <h2 className="text-[19px] font-medium text-white font-heading tracking-tight leading-tight">
+          <div className="relative z-10 px-6 py-6 max-w-[62%]">
+            <h2 className="text-[19px] font-semibold text-white font-heading tracking-tight leading-tight">
               Subscribe and
               <br />
               save up to 30%
             </h2>
             <p className="text-sm text-white font-body mt-2 leading-snug">
-              Enjoy your favourite scents, delivered to you.
+              Enjoy your favourite
+              <br />
+              scents, delivered
+              <br />
+              to you.
             </p>
           </div>
         </motion.a>
