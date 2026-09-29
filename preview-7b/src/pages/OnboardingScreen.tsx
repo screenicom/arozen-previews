@@ -16,23 +16,23 @@ const SLIDES: Slide[] = [
   title: 'More Than a Scent',
   description:
   'Every space has a feeling.\nArozen turns it into a memory\nworth keeping.',
-  image: '2026-09-19/2 - AZ_App_Screen2_MoreThanAScent_STEEL.png'
+  image: '2026-09-29 final/1-onboarding-more.jpg'
 },
 {
   id: 2,
   title: 'Smart Scheduling',
   description: 'Effortless scheduling, every day.',
-  image: 'onboarding-smart-scheduling.png'
+  image: '2026-09-29 final/2-onboarding-smart.jpg'
 },
 {
   id: 3,
   title: 'Home & Business\nScenting',
   description:
   'One system, styled for any space —\nfrom your living room\nto your storefront.',
-  image: '2026-09-19/4 - AZ_App_Screen4_HomeAndBusiness.png'
+  image: '2026-09-29 final/3-onboarding-home-bus.jpg'
 }];
 
-const AUTH_IMAGE = '2026-09-22/Login Hero 3.png';
+const AUTH_IMAGE = '2026-09-29 final/5-ongoarding-account.jpg';
 
 // Total step count: 3 intro slides + 1 auth choice slide
 const TOTAL_STEPS = SLIDES.length + 1;

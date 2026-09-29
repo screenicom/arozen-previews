@@ -4,13 +4,16 @@ interface SplashScreenProps {
   onComplete: () => void;
   onSkipToHome: () => void;
 }
+const SPLASH_IMAGE = ['2026-09-29 final', '0-splash.jpg']
+  .map(encodeURIComponent)
+  .join('/');
+
 export function SplashScreen({ onComplete, onSkipToHome }: SplashScreenProps) {
   return (
     <div
       className="flex flex-col h-full relative"
       style={{
-        backgroundImage:
-        "url('https://cdn.magicpatterns.com/uploads/ocbdvfUrq9Gk9b1Ygr5NUC/002A6129-LR-2.jpg')",
+        backgroundImage: `url('${import.meta.env.BASE_URL}${SPLASH_IMAGE}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}>

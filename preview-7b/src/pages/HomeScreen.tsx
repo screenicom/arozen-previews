@@ -6,6 +6,10 @@ interface HomeScreenProps {
   onTabChange: (tab: TabKey) => void;
   onConnectDevice: () => void;
 }
+
+const asset = (...parts: string[]) =>
+  `${import.meta.env.BASE_URL}${parts.map(encodeURIComponent).join('/')}`;
+
 export function HomeScreen({ onTabChange, onConnectDevice }: HomeScreenProps) {
   return (
     <div className="flex flex-col h-full wall-bg relative">
@@ -30,7 +34,7 @@ export function HomeScreen({ onTabChange, onConnectDevice }: HomeScreenProps) {
           className="relative flex w-full flex-col items-start rounded-3xl overflow-hidden text-left min-h-[210px]">
           
           <img
-            src={`${import.meta.env.BASE_URL}2026-09-22/${encodeURIComponent('banner-1b.png')}`}
+            src={asset('2026-09-29 final', 'banner-1.jpg')}
             alt=""
             className="absolute inset-0 w-full h-full object-cover object-right" />
           
@@ -60,7 +64,7 @@ export function HomeScreen({ onTabChange, onConnectDevice }: HomeScreenProps) {
           className="relative block w-full rounded-3xl overflow-hidden min-h-[180px]">
           
           <img
-            src={`${import.meta.env.BASE_URL}2026-09-22/${encodeURIComponent('banner-2b.jpg')}`}
+            src={asset('2026-09-29 final', 'banner-2.jpg')}
             alt=""
             className="absolute inset-0 w-full h-full object-cover object-right" />
           
