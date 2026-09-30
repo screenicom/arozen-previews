@@ -32,7 +32,7 @@ const SLIDES: Slide[] = [
   image: '2026-09-29 final/3-onboarding-home-bus.jpg'
 }];
 
-const AUTH_IMAGE = '2026-09-29 final/5-ongoarding-account.jpg';
+const AUTH_IMAGE = '2026-09-29 final/5-onboarding-account.jpg';
 
 // Total step count: 3 intro slides + 1 auth choice slide
 const TOTAL_STEPS = SLIDES.length + 1;
@@ -77,15 +77,6 @@ export function OnboardingScreen({
           }} />
         
       </AnimatePresence>
-
-      {isAuthSlide &&
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[38%]"
-        style={{
-          background:
-          'linear-gradient(to bottom, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.42) 48%, rgba(255,255,255,0) 100%)'
-        }} />
-      }
 
       {!isAuthSlide &&
       <button
