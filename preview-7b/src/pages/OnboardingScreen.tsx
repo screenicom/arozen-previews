@@ -32,7 +32,7 @@ const SLIDES: Slide[] = [
   image: '2026-09-29 final/3-onboarding-home-bus.jpg'
 }];
 
-const AUTH_IMAGE = '2026-09-29 final/5-onboarding-account.jpg';
+const AUTH_IMAGE = '2026-09-29 final/4-onboarding-account.jpg';
 
 // Total step count: 3 intro slides + 1 auth choice slide
 const TOTAL_STEPS = SLIDES.length + 1;
